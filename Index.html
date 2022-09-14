@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e</title>
+</head>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+<body>
+
+
+    <div class="container-xxl text-center">
+
+        <div class="row p-2" style="background-color: #335EFF;">
+            <!-- HEADER-->
+            <div class="col-12 rounded bg-white">
+                <div class="row align-items-start">
+                    <div class="col-4 align-self-center">
+
+                        <img src='https://i.postimg.cc/rFYhmWT9/logo-GPSfull.png' border='0' alt='logo-GPSfull'
+                            class="img-fluid " style="max-height: 100px" />
+
+                    </div>
+
+                    <div class="col-4 align-self-center">
+                        <h3 style="color:black">Generador de Informes</h3>
+                    </div>
+
+                    <div class="col-1 align-self-center">
+                    </div>
+
+                    <div class="col-2 align-self-center d-none d-md-block">
+                        <h5 style="color:black">Al servicio de</h5>
+                        <img src="https://i.postimg.cc/gcsSCQBQ/telecentro-350x183.png" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- --------------------------------------BODY------------------------------------------------------------>
+            <div class="col-md-12 pt-3 pb-5" style="background-color: #C2CAE5;">
+
+                <form id="FORMULARIO" class="row g-2 needs-validation" onsubmit="return false" novalidate>
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <div class="input-group">
+                                <label for="ID" class="col-sm-3 col-form-label text-start">ID:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="ID" placeholder="Ingrese el ID"
+                                        required>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes ingresar el ID de la gestion!
+                                    </div>
+                                </div>
+                                <button class="btn btn-secondary" type="button" id="BUSCARID">BUSCAR ID</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <label for="NODO" class="col-sm-3 col-form-label text-start">Nodo:</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="NODO" placeholder="Ingrese el Nodo"
+                                    required>
+                                <div class="invalid-tooltip">
+                                    ¡Debes ingresar el Nodo!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <label for="DIRECCION" class="col-sm-3 col-form-label text-start">Dirección:</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="DIRECCION"
+                                    placeholder="Ingrese la Dirección" required>
+                                <div class="invalid-tooltip">
+                                    ¡Debes ingresar la Dirección!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <label for="ZONA" class="col-sm-3 col-form-label text-start">ZONA:</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="ZONA" placeholder="Ingrese la zona del Edif"
+                                    required>
+                                <div class="invalid-tooltip">
+                                    ¡Debes ingresar la Zona!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <label for="PISOS" class="col-sm-3 col-form-label text-start">Pisos:</label>
+                            <div class="col-sm-5">
+                                <input type="number" class="form-control" id="PISOS"
+                                    placeholder="Ingrese la cantidad de Pisos" required>
+                                <div class="invalid-tooltip">
+                                    ¡Debes ingresar la cantidad de Pisos!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <label for="DPTOS" class="col-sm-3 col-form-label text-start">Departamentos:</label>
+                            <div class="col-sm-5">
+                                <input type="number" class="form-control" id="DPTOS"
+                                    placeholder="Ingrese la cantidad de UF" required>
+                                <div class="invalid-tooltip">
+                                    ¡Debes ingresar la cantidad de Dptos!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 position-relative mt-5">
+                        <div class="row">
+                            <label for="TIPOINFO" class="col-sm-3 col-form-label text-start">Tipo de informe: </label>
+                            <div class="col-sm-5">
+                                <select class="form-select" id="TIPOINFO" required>
+                                    <option selected disabled value="">Seleccione</option>
+                                    <option value="1">PROPUESTA PARA ARMADO (permiso)</option>
+                                    <option value="2">PREFACTIBILIDAD PARA ARMADO</option>
+                                    <option value="3">INCUMPLIMIENTO DE EDIFICIO</option>
+                                    <option value="4">PREFACTIBILIDAD PARA RECONVERSION DE EDIFICIO</option>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    ¡Debes ingresar el tipo de informe a solicitar!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 position-relative">
+
+
+
+
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="col-3 text-start">
+                                    <label for="TELEFN1" class="col-form-label text-start">Tipo de Contacto:</label>
+                                </div>
+                                <div class="col-2">
+                                    <select class="form-select" id="TELEFN1" required>
+                                        <option selected disabled value="">Seleccione</option>
+                                        <option value="Administracion">Administracion</option>
+                                        <option value="Encargado">Encargado</option>
+                                        <option value="Firmante">Firmante</option>
+                                    </select>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes ingresar al menos un tipo de contacto!
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control" id="TELEF11" placeholder="Nombre" required>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes ingresar al menos un nombre del contacto!
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" id="TELEF12" placeholder="Telefono"
+                                        required>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes ingresar al menos un numero de contacto!
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" id="TELEF13" placeholder="Mail" required>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes ingresar al menos un mail de contacto ( - = No Indica)!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="input-group">
+                                <div class="col-3 text-start">
+                                    <label for="TELEFN1" class="col-form-label text-start">Tipo de Contacto:</label>
+                                </div>
+                                <div class="col-2">
+                                    <select class="form-select" id="TELEFN2">
+                                        <option selected disabled value="">Seleccione</option>
+                                        <option value="Administracion">Administracion</option>
+                                        <option value="Encargado">Encargado</option>
+                                        <option value="Firmante">Firmante</option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control" id="TELEF21" placeholder="Nombre">
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" id="TELEF22" placeholder="Telefono">
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" id="TELEF23" placeholder="Mail">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="input-group">
+                                <div class="col-3 text-start">
+                                    <label for="TELEFN1" class="col-form-label text-start">Tipo de Contacto:</label>
+                                </div>
+                                <div class="col-2">
+                                    <select class="form-select" id="TELEFN3">
+                                        <option selected disabled value="">Seleccione</option>
+                                        <option value="Administracion">Administracion</option>
+                                        <option value="Encargado">Encargado</option>
+                                        <option value="Firmante">Firmante</option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control" id="TELEF31" placeholder="Nombre">
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" id="TELEF32" placeholder="Telefono">
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" id="TELEF33" placeholder="Mail">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <label for="PERMISO" class="col-sm-3 col-form-label text-start">Tipo de Permiso: </label>
+                            <div class="col-sm-5">
+                                <select class="form-select" id="PERMISO" required>
+                                    <option selected disabled value="">Seleccione</option>
+                                    <option value="1">Permite armado por exterior y tiene cañería destinada para CATV
+                                        (montante).</option>
+                                    <option value="2">No permite armado por exterior, tiene cañería destinada para
+                                        CATV (montante).</option>
+                                    <option value="3">Permite armado por exterior, no tiene cañería destinada para
+                                        CATV (montante).</option>
+                                    <option value="4">No tiene permiso, ingreso como una VT de instalación.</option>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    ¡Debes ingresar el Permiso previo o si se entro por VT!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="col-3 text-start">
+                                    <label for="LOCAL" class="col-form-label text-start">Locales tomando del
+                                        Edif:</label>
+                                </div>
+                                <div class="col-3">
+                                    <select class="form-select" id="LOCAL" required>
+                                        <option selected disabled value="">Seleccione</option>
+                                        <option value="NO">NO</option>
+                                        <option value="SI">SI</option>
+                                    </select>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes indicar si existen locales tomando del
+                                        Edif!
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control" id="LOCALCANT" placeholder="Cantidad">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <label for="COMPETENCIA" class="col-sm-3 col-form-label text-start">Info de Competencia:
+                            </label>
+                            <div class="col-sm-6">
+                                <select class="form-select" id="COMPETENCIA" required>
+                                    <option selected disabled value="">Seleccione</option>
+                                    <option value="1">Las competencias se encuentran armada por Exterior y ofrecen
+                                        servicios de internet y cable.</option>
+                                    <option value="2">Las competencias se encuentran armada por Montante y ofrecen
+                                        servicios de internet y cable.</option>
+                                    <option value="3">Las competencias se encuentran armada por Exterior y Montante y
+                                        ofrecen servicios de internet y cable.</option>
+                                    <option value="4">El Edificio no posee otras empresas instaladas.</option>
+                                </select>
+                                <div class="invalid-tooltip">
+                                    ¡Debes ingresar la informacion de la competencia!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+
+                            <label for="ARMADO" class="col-sm-3 col-form-label text-start">Propuesta de
+                                Armado:</label>
+
+                        </div>
+
+                        <div class="row" id="switchPropuestas">
+
+                            <div class="col-sm-12">
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox1"
+                                        value="1" required>
+                                    <label class="form-check-label" for="inlineCheckbox1">HFC - EXTERIOR</label>
+                                </div>
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox2"
+                                        value="2" required>
+                                    <label class="form-check-label" for="inlineCheckbox2">HFC - MONTANTE</label>
+                                </div>
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox3"
+                                        value="3" required>
+                                    <label class="form-check-label" for="inlineCheckbox3">HFC - EXTERIOR Y
+                                        MONTANTE</label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 mt-2 ">
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox4"
+                                        value="4" required>
+                                    <label class="form-check-label" for="inlineCheckbox4">FTTH - EXTERIOR</label>
+                                </div>
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox5"
+                                        value="5" required>
+                                    <label class="form-check-label" for="inlineCheckbox5">FTTH - MONTANTE</label>
+                                </div>
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox6"
+                                        value="6" required>
+                                    <label class="form-check-label" for="inlineCheckbox6">FTTH - EXTERIOR Y
+                                        MONTANTE</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+                            <label for="OBS" class="col-sm-3 col-form-label text-start">Observaciones
+                                Adicionales:</label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-sm-6">
+                                <div id="preview"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="input-group">
+                                <label for="imaUpload" class="col-sm-1 col-form-label text-start">1.</label>
+                                <input type="file" class="col-sm-5 form-control" id="imaUpload">
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-sm-12">
+                                <textarea id="OBS1" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-12 pt-3">
+                        <div class="row">
+                            <div class="col-6 d-grid gap-2">
+                                <button id="GENERAR" type="submit" class="btn btn-success">GENERAR</button>
+
+                            </div>
+                            <div class="col-6 d-grid gap-2">
+                                <button id="BORRAR" type="button" class="btn btn-danger">BORRAR</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+        <div class="row" style="background-color: #335EFF;">
+            <!------------------------------------------ FOOTER ------------------------------>
+            <div class="col align-self-center">
+                <div class="row mt-3">
+                    <div class="col-sm-12 ">
+                        <h5 style="color:white">Desarrollado por Gestion de Procesos y Servicios S.A. al servicio de
+                            TELECENTRO</h5>
+                    </div>
+                    <div class="row mt-">
+                        <div class="col-sm-6 offset-sm-3">
+                            <h6 style="color:white">By Ing. Ignacio Velazquez</h6>
+                            <h6 style="color:white">jvelazquez@gdp.com.ar</h6>
+                        </div>
+                        <div class="col-sm-1 offset-sm-2">
+                            <h5 style="color:white">V1.0</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="./JavaScript.html.js"></script>
+        <!---------<?!= include('JavaScript'); ?>---->
+        <script src="./thumbnails.html.js"></script>
+        <!---------<?!= include('thumbnails'); ?>---->
+
+</body>
+
+</html>
