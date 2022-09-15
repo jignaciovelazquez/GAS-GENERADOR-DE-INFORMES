@@ -44,25 +44,29 @@ function uploadFiles(obj) {
 
 
 
-
-function Escribir(id, nodo, direccion, zona, pisos, dptos, url, titulo, permiso, competencia) {
-
+function Escribir(id, nodo, direccion, zona, pisos, dptos, url, titulo, contacto, permiso, competencia, local, propuestas) {
 
   let fechaActual = obtenerFecha();
+  let loc = "";
+  let locCant = 0;
 
-  //------------------------------------------------------------
-
-  //informe test
+  //------------ crea una copia de informe test y reemplaza los campos ------------------
   let docActual = DriveApp.getFileById("1GxtZQJd-WdtK3jUPpUgXb4gBkfQsJn4hBwtO-g6ypA0");
-
   let docNuevo = docActual.makeCopy("copia");
-
   let idDocNuevo = docNuevo.getId();
-
   let doc = DocumentApp.openById(idDocNuevo);
 
-  //reemplazar los datos \
+  if (local > 0) {
+    loc = "SI";
+    locCant = local;
+  }
+  else {
+    loc = "NO";
+    locCant = 0;
+  }
 
+
+  //reemplazar los datos \
   doc.getBody().replaceText("<<ID>>", id);
   doc.getBody().replaceText("<<NODO>>", nodo);
   doc.getBody().replaceText("<<DIRECCION>>", direccion);
@@ -71,13 +75,15 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, titulo, permiso,
   doc.getBody().replaceText("<<UF>>", dptos);
   doc.getBody().replaceText("<<FECHA>>", fechaActual);
   doc.getBody().replaceText("<<TITULO>>", titulo);
+  doc.getBody().replaceText("<<contactos>>", contacto);
   doc.getBody().replaceText("<<permiso>>", permiso);
+  doc.getBody().replaceText("<<locales>>", loc);
+  doc.getBody().replaceText("<<localestoman>>", locCant);
   doc.getBody().replaceText("<<competencia>>", competencia);
 
-  doc.getBody().replaceText("<<contactos>>", `Administración: Cecilia       	Teléfono: 11 2723-4058          Mail: cygbroker@gmail.com\n
-Administración: Cecilia       	Teléfono: 11 2723-4058          Mail: cygbroker@gmail.com`);
 
-  console.log("ENTRO");
+
+
 
 
   //------------- imagenes ----------------------------------------------
