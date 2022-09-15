@@ -21,7 +21,7 @@
 
 //Variables
 
-var IDPARAMONTAR;
+var IDPARAMONTAR = "0";
 var opciones = [];
 var cont = 0;
 var flagImagen = 0;
@@ -112,7 +112,7 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
   setTimeout(function () {
     document.getElementById("GENERAR").disabled = false;
-  }, 2000);
+  }, 10000);
 
   let Titulo;
   let Permisoenviar;
@@ -127,13 +127,7 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
   CampoDptos = document.getElementById("DPTOS").value;
 
 
-  switch (document.getElementById("TIPOINFO").value) {
-    case "1": Titulo = "INFORME DE PROPUESTA PARA ARMADO DE EDIFICIO"; break;
-    case "2": Titulo = "INFORME DE PREFACTIBILIDAD PARA ARMADO DE EDIFICIO"; break;
-    case "3": Titulo = "INFORME DE INCUMPLIMIENTO DE EDIFICIO"; break;
-    case "4": Titulo = "INFORME DE PREFACTIBILIDAD PARA RECONVERSION DE EDIFICIO"; break;
-    default: break;
-  }
+  Titulo = document.getElementById("TIPOINFO").value;
 
   switch (document.getElementById("PERMISO").value) {
     case "1": Permisoenviar = "Permite armado por exterior y tiene cañería destinada para CATV (montante)."; break;
@@ -144,16 +138,16 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
   }
 
   switch (document.getElementById("COMPETENCIA").value) {
-    case "1": Competenciaenviar = "Las competencias se encuentran armada por Exterior y ofrecen servicios de internet y cable."; break;
-    case "2": Competenciaenviar = "Las competencias se encuentran armada por Montante y ofrecen servicios de internet y cable."; break;
-    case "3": Competenciaenviar = "Las competencias se encuentran armada por Exterior y Montante y ofrecen servicios de internet y cable."; break;
+    case "1": Competenciaenviar = "Las competencias se encuentran armadas por Exterior y ofrecen servicios de internet y cable."; break;
+    case "2": Competenciaenviar = "Las competencias se encuentran armadas por Montante y ofrecen servicios de internet y cable."; break;
+    case "3": Competenciaenviar = "Las competencias se encuentran armadas por Exterior y Montante y ofrecen servicios de internet y cable."; break;
     case "4": Competenciaenviar = "El Edificio no posee otras empresas instaladas."; break;
     default: break;
   }
 
   //-------------------------- Formato para el Campo de multiples contactos -------------------------------
 
-  let contact = multiContactos();
+  let Contact = multiContactos();
 
   //-------------------------- Locales -------------------------------
 
@@ -174,7 +168,23 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
   //--------------------------  -------------------------------
 
-  google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, Titulo, contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones);
+
+
+  console.log(CampoID);
+  console.log(CampoNodo);
+  console.log(CampoDireccion);
+  console.log(CampoZona);
+  console.log(CampoPisos);
+  console.log(CampoDptos);
+  console.log(IDPARAMONTAR);
+  console.log(Titulo);
+  console.log(Contact);
+  console.log(Permisoenviar);
+  console.log(Competenciaenviar);
+  console.log(localesEnviar);
+  console.log(opciones);
+
+  google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones);
 
 })
 

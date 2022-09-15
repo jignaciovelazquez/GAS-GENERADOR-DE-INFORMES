@@ -1,5 +1,7 @@
 //----------------- vista previa de las imagenes --------------------------------
 
+//----------------- vista previa de las imagenes --------------------------------
+
 document.getElementById("imaUpload").addEventListener("change", handleFiles, false);
 
 function handleFiles(f) {
