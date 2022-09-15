@@ -97,9 +97,7 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
 
 
 
-
   propuestas.forEach((e) => {
-
     switch (e) {
       case "1": solucionPorpuesta += "PROPUESTA ARMADO EXTERIOR-HFC\n"; break;
       case "2": solucionPorpuesta += "PROPUESTA ARMADO MONTANTE-HFC\n"; break;
@@ -118,19 +116,48 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
 
   if (url != "0") {
 
+    let imagen = DriveApp.getFileById("1J3robW_RbVrrJjVydo9iizzXerxmyzij");
+    var tabla = doc.getBody().appendTable();
+
+
+    var fila = tabla.appendTableRow();
+
+    fila.appendTableCell().appendImage(imagen.getBlob());
+    fila.appendTableCell("CELDA");
+
+    var fila = tabla.appendTableRow();
+
+    fila.appendTableCell("CAJA EJEMPLO A INSTALAR");
+    fila.appendTableCell("Modelos de equipos a instalar en piso");
+
+    /*
+        imagen.setHeight(300);
+      imagen.setWidth(300);
+      */
+
+
+    /*
+  
     //------------- imagenes ----------------------------------------------
     let imagen = DriveApp.getFileById("1J3robW_RbVrrJjVydo9iizzXerxmyzij");
     let imageninsertar = doc.getBody().appendImage(imagen.getBlob());
-
+  
+    // doc.getBody().replaceText("<<IMG1>>", appendImage(imagen.getBlob()));
+  
+  
+  
+  
     let imageH = imageninsertar.setHeight(300);
     let imageW = imageninsertar.setWidth(300);
-
-
+  
+  
     let imagen2 = DriveApp.getFileById(url);
     let imageninsertar2 = doc.getBody().appendImage(imagen2.getBlob());
-
+  
     let imageH2 = imageninsertar2.setHeight(500);
     let imageW2 = imageninsertar2.setWidth(500);
+  
+    */
 
   }
 
