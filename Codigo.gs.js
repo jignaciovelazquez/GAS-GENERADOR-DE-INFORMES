@@ -1,4 +1,5 @@
 
+
 function doGet() {
   var html = HtmlService.createTemplateFromFile('Index.html').evaluate()
     .setTitle("Generador de informes")
@@ -44,7 +45,7 @@ function uploadFiles(obj) {
 
 
 
-function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, contacto, permiso, competencia, local, propuestas) {
+function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, contacto, permiso, competencia, local, propuestas, ObsPropuesta) {
 
 
 
@@ -99,69 +100,85 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
 
   propuestas.forEach((e) => {
     switch (e) {
-      case "1": solucionPorpuesta += "PROPUESTA ARMADO EXTERIOR-HFC\n"; break;
-      case "2": solucionPorpuesta += "PROPUESTA ARMADO MONTANTE-HFC\n"; break;
-      case "3": solucionPorpuesta += "PROPUESTA ARMADO EXTERIOR-MONTANTE-HFC\n"; break;
-      case "4": solucionPorpuesta += "PROPUESTA ARMADO EXTERIOR-FTTH\n"; break;
-      case "5": solucionPorpuesta += "PROPUESTA ARMADO MONTANTE-FTTH\n"; break;
-      case "6": solucionPorpuesta += "PROPUESTA ARMADO EXTERIOR-MONTANTE-FTTH\n"; break;
-      default: break;
+      case "1":
+        doc.getBody().appendParagraph("PROPUESTA EXTERIOR-HFC\n");
+        let imagen = DriveApp.getFileById("1hOP3MgwZVp7yPEyJoM4A0ggdPXFikeZV");
+        let imagen2 = DriveApp.getFileById("1ymokXtLC1c8IHiJGCzRa5mqk22LvUkB7");
+        var tabla = doc.getBody().appendTable();
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell().appendImage(imagen.getBlob()).setHeight(300).setWidth(300);
+        fila.appendTableCell().appendImage(imagen2.getBlob()).setHeight(300).setWidth(300);
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell("Ejemplo equipo a instalar");
+        fila.appendTableCell("Ejemplo equipo a instalar");
+        break;
+
+      case "2":
+        doc.getBody().appendParagraph("PROPUESTA ARMADO MONTANTE-HFC\n");
+        let imagen3 = DriveApp.getFileById("1cLpmuCFx0pORyFZ7AlLvBpFuh9xQdFf9");
+        let imagen4 = DriveApp.getFileById("1PKiXcNhgpP1ohNYKDcfE89akYwlrtXkU");
+        var tabla = doc.getBody().appendTable();
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell().appendImage(imagen3.getBlob()).setHeight(300).setWidth(300);
+        fila.appendTableCell().appendImage(imagen4.getBlob()).setHeight(300).setWidth(300);
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell("Ejemplo equipo a instalar");
+        fila.appendTableCell("Ejemplo equipo a instalar");
+        break;
+
+      case "3":
+        doc.getBody().appendParagraph("PROPUESTA EXTERIOR-FTTH\n");
+        let imagen5 = DriveApp.getFileById("1mISXF-y0wDaqZnT4T_Zj8PVRZg15rtjD");
+        let imagen6 = DriveApp.getFileById("1cCE4Aq3pajDc28Rqpt2tPHJoywT9bAOY");
+        var tabla = doc.getBody().appendTable();
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell().appendImage(imagen5.getBlob()).setHeight(300).setWidth(300);
+        fila.appendTableCell().appendImage(imagen6.getBlob()).setHeight(300).setWidth(300);
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell("Ejemplo caja para fibra a instalar");
+        fila.appendTableCell("Ejemplo caja para fibra a instalar");
+        break;
+
+      case "4":
+        doc.getBody().appendParagraph("PROPUESTA MONTANTE-FTTH\n");
+        let imagen7 = DriveApp.getFileById("19BWiOhNzefxE5LXKtDCohwMS7v2VuGSG");
+        let imagen8 = DriveApp.getFileById("1S_vEYiXA83HUpf3gxJirpp2L58Fb6Dkd");
+        let imagen9 = DriveApp.getFileById("1BqYeuI-IEsUYtny7C4W0B4IUcT8mQgzW");
+        let imagen10 = DriveApp.getFileById("1Ha6CpZ7nZK6XEvJIoXe7moPi7gUD26Ur");
+        var tabla = doc.getBody().appendTable();
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell().appendImage(imagen7.getBlob()).setHeight(280).setWidth(280);
+        fila.appendTableCell().appendImage(imagen8.getBlob()).setHeight(280).setWidth(280);
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell("Ejemplo caja principal a instalar");
+        fila.appendTableCell("Ejemplo cajas secundarias a instalar");
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell().appendImage(imagen9.getBlob()).setHeight(360).setWidth(300);
+        fila.appendTableCell().appendImage(imagen10.getBlob()).setHeight(360).setWidth(300);
+        var fila = tabla.appendTableRow();
+        fila.appendTableCell("Ejemplo caja principal a instalar");
+        fila.appendTableCell("Ejemplo cajas secundarias a instalar");
+        break;
     }
   });
 
 
-  doc.getBody().replaceText("<<PROPUESTA>>", solucionPorpuesta);
+  doc.getBody().replaceText("<<PROPUESTA>>", ObsPropuesta);
 
 
 
   if (url != "0") {
 
-    let imagen = DriveApp.getFileById("1J3robW_RbVrrJjVydo9iizzXerxmyzij");
-    var tabla = doc.getBody().appendTable();
-
-
-    var fila = tabla.appendTableRow();
-
-    fila.appendTableCell().appendImage(imagen.getBlob());
-    fila.appendTableCell("CELDA");
-
-    var fila = tabla.appendTableRow();
-
-    fila.appendTableCell("CAJA EJEMPLO A INSTALAR");
-    fila.appendTableCell("Modelos de equipos a instalar en piso");
-
-    /*
-        imagen.setHeight(300);
-      imagen.setWidth(300);
-      */
-
-
-    /*
-  
-    //------------- imagenes ----------------------------------------------
-    let imagen = DriveApp.getFileById("1J3robW_RbVrrJjVydo9iizzXerxmyzij");
-    let imageninsertar = doc.getBody().appendImage(imagen.getBlob());
-  
-    // doc.getBody().replaceText("<<IMG1>>", appendImage(imagen.getBlob()));
-  
-  
-  
-  
-    let imageH = imageninsertar.setHeight(300);
-    let imageW = imageninsertar.setWidth(300);
-  
-  
-    let imagen2 = DriveApp.getFileById(url);
-    let imageninsertar2 = doc.getBody().appendImage(imagen2.getBlob());
-  
-    let imageH2 = imageninsertar2.setHeight(500);
-    let imageW2 = imageninsertar2.setWidth(500);
-  
-    */
+    let imagenn = DriveApp.getFileById(url);
+    let imageninsertar2 = doc.getBody().appendImage(imagenn.getBlob()).setHeight(500).setWidth(500);
 
   }
 
 
+  doc.getBody().insertParagraph(30, "TEXTO INSERTADO EN LA POSICION 30");
+  //doc.getBody().insertTable(20, tabla);
+  //doc.getBody().insertTable(30).appendTable().appendTableRow().appendTableCell().appendImage(imagen7.getBlob()).setHeight(280).setWidth(280);
+  //doc.getBody().insertTable(30, [['Test Text']]);
 
 
   return (idDocNuevo);
@@ -201,3 +218,4 @@ function include(filename) {
     .getContent()
 
 }
+

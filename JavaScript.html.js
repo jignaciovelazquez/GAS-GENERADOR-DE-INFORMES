@@ -59,6 +59,7 @@ document.getElementById("LOCAL").addEventListener("change", () => {
 
 document.getElementById("switchPropuestas").addEventListener("change", () => {
 
+  let ObsPropuesta = document.getElementById("OBS");
   let checks = document.querySelectorAll(".form-check-input");
 
 
@@ -77,6 +78,19 @@ document.getElementById("switchPropuestas").addEventListener("change", () => {
       cont++;
     }
   });
+  ObsPropuesta.value = "";
+  opciones.forEach((e) => {
+    switch (e) {
+      case "1": ObsPropuesta.value += "*- Se propone armado por exterior del edificio distribuyendo los equipos en la terraza del mismo respetando la prolijidad de los cables desde el ingreso hasta los equipos e instalando uno o más conjuntos para minimizar la cantidad y el recorrido de cables por la terraza, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
+      case "2": ObsPropuesta.value += "*- Se propone armado por montante del edificio distribuyendo los equipos en las bocas de inspección de los pisos respetando la prolijidad de los cables desde el ingreso hasta los equipos, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
+      case "3": ObsPropuesta.value += "*- Se propone armado por exterior del edificio distribuyendo los equipos en la terraza del mismo respetando la prolijidad de los cables de fibra óptica desde el ingreso hasta los equipos e instalando uno o más conjuntos para minimizar la cantidad y el recorrido de cables por la terraza, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
+      case "4": ObsPropuesta.value += "*- Se propone armado por montante del edificio respetando la prolijidad de los cables de fibra óptica  desde el ingreso hasta la caja principal y distribuyendo a las cajas secundarias ubicadas dentro o fuera de las bocas de inspección de los pisos, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
+      default: break;
+    }
+
+  });
+
+
   console.log(opciones);
   console.log(cont);
   console.log(flagImagen);
@@ -107,6 +121,7 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
     }
   }
 
+  //-------------------------- Envio de info para generar el Docs -------------------------------
 
   document.getElementById("GENERAR").disabled = true;
 
@@ -125,6 +140,7 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
   CampoZona = document.getElementById("ZONA").value;
   CampoPisos = document.getElementById("PISOS").value;
   CampoDptos = document.getElementById("DPTOS").value;
+  let ObsPropuesta = document.getElementById("OBS").value;
 
 
   Titulo = document.getElementById("TIPOINFO").value;
@@ -184,7 +200,7 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
   console.log(localesEnviar);
   console.log(opciones);
 
-  google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones);
+  google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones, ObsPropuesta);
 
 })
 
@@ -258,7 +274,6 @@ function abrirNuevoTab(idDoc) {
   win.focus();
   // Cambiar el foco al nuevo tab (punto opcional)
 }
-
 
 
 
