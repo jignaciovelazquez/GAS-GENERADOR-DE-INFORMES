@@ -81,10 +81,10 @@ document.getElementById("switchPropuestas").addEventListener("change", () => {
   ObsPropuesta.value = "";
   opciones.forEach((e) => {
     switch (e) {
-      case "1": ObsPropuesta.value += "*- Se propone armado por exterior del edificio distribuyendo los equipos en la terraza del mismo respetando la prolijidad de los cables desde el ingreso hasta los equipos e instalando uno o más conjuntos para minimizar la cantidad y el recorrido de cables por la terraza, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
-      case "2": ObsPropuesta.value += "*- Se propone armado por montante del edificio distribuyendo los equipos en las bocas de inspección de los pisos respetando la prolijidad de los cables desde el ingreso hasta los equipos, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
-      case "3": ObsPropuesta.value += "*- Se propone armado por exterior del edificio distribuyendo los equipos en la terraza del mismo respetando la prolijidad de los cables de fibra óptica desde el ingreso hasta los equipos e instalando uno o más conjuntos para minimizar la cantidad y el recorrido de cables por la terraza, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
-      case "4": ObsPropuesta.value += "*- Se propone armado por montante del edificio respetando la prolijidad de los cables de fibra óptica  desde el ingreso hasta la caja principal y distribuyendo a las cajas secundarias ubicadas dentro o fuera de las bocas de inspección de los pisos, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
+      case "1": ObsPropuesta.value += "  • Se propone armado por exterior del edificio distribuyendo los equipos en la terraza del mismo respetando la prolijidad de los cables desde el ingreso hasta los equipos e instalando uno o más conjuntos para minimizar la cantidad y el recorrido de cables por la terraza, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
+      case "2": ObsPropuesta.value += "  • Se propone armado por montante del edificio distribuyendo los equipos en las bocas de inspección de los pisos respetando la prolijidad de los cables desde el ingreso hasta los equipos, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
+      case "3": ObsPropuesta.value += "  • Se propone armado por exterior del edificio distribuyendo los equipos en la terraza del mismo respetando la prolijidad de los cables de fibra óptica desde el ingreso hasta los equipos e instalando uno o más conjuntos para minimizar la cantidad y el recorrido de cables por la terraza, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
+      case "4": ObsPropuesta.value += "  • Se propone armado por montante del edificio respetando la prolijidad de los cables de fibra óptica  desde el ingreso hasta la caja principal y distribuyendo a las cajas secundarias ubicadas dentro o fuera de las bocas de inspección de los pisos, garantizando la correcta cobertura de los futuros abonados dentro del edificio.\n"; break;
       default: break;
     }
 
@@ -105,6 +105,8 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
     alert("Debe completar todos los campos")
     return
   }
+
+
 
   //-------------------------- obligatoriedad de Propuesta de Armado -------------------------------
   if (cont == 0) {
@@ -127,7 +129,7 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
   setTimeout(function () {
     document.getElementById("GENERAR").disabled = false;
-  }, 10000);
+  }, 15000);
 
   let Titulo;
   let Permisoenviar;
@@ -135,12 +137,13 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
 
   CampoID = document.getElementById("ID").value;
-  CampoNodo = document.getElementById("NODO").value;
-  CampoDireccion = document.getElementById("DIRECCION").value;
-  CampoZona = document.getElementById("ZONA").value;
+  CampoNodo = document.getElementById("NODO").value.toUpperCase();
+  CampoDireccion = document.getElementById("DIRECCION").value.toUpperCase();
+  CampoZona = document.getElementById("ZONA").value.toUpperCase();
   CampoPisos = document.getElementById("PISOS").value;
   CampoDptos = document.getElementById("DPTOS").value;
   let ObsPropuesta = document.getElementById("OBS").value;
+  let ObsGeneral = document.getElementById("OBS1").value;
 
 
   Titulo = document.getElementById("TIPOINFO").value;
@@ -185,22 +188,10 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
   //--------------------------  -------------------------------
 
 
+  console.log(ObsGeneral);
 
-  console.log(CampoID);
-  console.log(CampoNodo);
-  console.log(CampoDireccion);
-  console.log(CampoZona);
-  console.log(CampoPisos);
-  console.log(CampoDptos);
-  console.log(IDPARAMONTAR);
-  console.log(Titulo);
-  console.log(Contact);
-  console.log(Permisoenviar);
-  console.log(Competenciaenviar);
-  console.log(localesEnviar);
-  console.log(opciones);
 
-  google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones, ObsPropuesta);
+  google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones, ObsPropuesta, ObsGeneral);
 
 })
 
@@ -222,7 +213,7 @@ function multiContactos() {
     telf: document.getElementById("TELEF12").value,
     Mail: document.getElementById("TELEF13").value
   }
-  CampoContacto = `   ${objContacto1.tipo}: ${objContacto1.nombre}      Teléfono: ${objContacto1.telf}      Mail: ${objContacto1.Mail}\n`;
+  CampoContacto = `•   ${objContacto1.tipo}: ${objContacto1.nombre}      Teléfono: ${objContacto1.telf}      Mail: ${objContacto1.Mail}\n`;
 
   if ((document.getElementById("TELEFN2").value != "") || (document.getElementById("TELEF21").value != "") || (document.getElementById("TELEF22").value != "") || (document.getElementById("TELEF23").value != "")) {
     if ((document.getElementById("TELEFN2").value == "") || (document.getElementById("TELEF21").value == "") || (document.getElementById("TELEF22").value == "") || (document.getElementById("TELEF23").value == "")) {
@@ -236,7 +227,7 @@ function multiContactos() {
         telf: document.getElementById("TELEF22").value,
         Mail: document.getElementById("TELEF23").value
       }
-      CampoContacto += `   ${objContacto2.tipo}: ${objContacto2.nombre}      Teléfono: ${objContacto2.telf}      Mail: ${objContacto2.Mail}\n`;
+      CampoContacto += `\n•   ${objContacto2.tipo}: ${objContacto2.nombre}      Teléfono: ${objContacto2.telf}      Mail: ${objContacto2.Mail}\n`;
     }
   }
 
@@ -252,7 +243,7 @@ function multiContactos() {
         telf: document.getElementById("TELEF32").value,
         Mail: document.getElementById("TELEF33").value
       }
-      CampoContacto += `   ${objContacto3.tipo}: ${objContacto3.nombre}      Teléfono: ${objContacto3.telf}      Mail: ${objContacto3.Mail}\n`;
+      CampoContacto += `\n•   ${objContacto3.tipo}: ${objContacto3.nombre}      Teléfono: ${objContacto3.telf}      Mail: ${objContacto3.Mail}\n`;
     }
   }
   return (CampoContacto);

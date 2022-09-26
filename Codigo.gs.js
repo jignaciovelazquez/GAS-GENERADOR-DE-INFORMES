@@ -1,9 +1,10 @@
 
 
+
 function doGet() {
   var html = HtmlService.createTemplateFromFile('Index.html').evaluate()
     .setTitle("Generador de informes")
-    .setFaviconUrl("https://freepngimg.com/download/telephone/13-2-telephone-free-download-png.png");
+    .setFaviconUrl("https://cdn-icons-png.flaticon.com/512/281/281760.png");
   return html
 
 }
@@ -45,7 +46,7 @@ function uploadFiles(obj) {
 
 
 
-function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, contacto, permiso, competencia, local, propuestas, ObsPropuesta) {
+function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, contacto, permiso, competencia, local, propuestas, ObsPropuesta, ObsGeneral) {
 
 
 
@@ -57,8 +58,10 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
   let solucionPorpuesta = "";
 
   //------------ crea una copia de informe test y reemplaza los campos ------------------
+
+  let nombreInfo = `${nodo} - ${direccion} - DISEÑO 1`;
   let docActual = DriveApp.getFileById("1GxtZQJd-WdtK3jUPpUgXb4gBkfQsJn4hBwtO-g6ypA0");
-  let docNuevo = docActual.makeCopy("copia");
+  let docNuevo = docActual.makeCopy(nombreInfo);
   let idDocNuevo = docNuevo.getId();
   let doc = DocumentApp.openById(idDocNuevo);
 
@@ -73,12 +76,26 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
 
 
   switch (tituloarmado) {
-    case "1": titulo = "INFORME DE PROPUESTA PARA ARMADO DE EDIFICIO"; break;
-    case "2": titulo = "INFORME DE PREFACTIBILIDAD PARA ARMADO DE EDIFICIO"; break;
-    case "3": titulo = "INFORME DE INCUMPLIMIENTO DE EDIFICIO"; break;
-    case "4": titulo = "INFORME DE PREFACTIBILIDAD PARA RECONVERSION DE EDIFICIO"; break;
+    case "1":
+      titulo = "INFORME DE PROPUESTA PARA ARMADO DE EDIFICIO";
+      doc.getBody().replaceText("<<OBJ>>", "Dar a conocer las alternativas para realizar el armado del edificio.");
+      break;
+    case "2":
+      titulo = "INFORME DE PREFACTIBILIDAD PARA ARMADO DE EDIFICIO";
+      doc.getBody().replaceText("<<OBJ>>", "Dar a conocer las alternativas para realizar el armado del edificio.");
+      break;
+    case "3":
+      titulo = "INFORME DE INCUMPLIMIENTO DE EDIFICIO";
+      doc.getBody().replaceText("<<OBJ>>", "Dar a conocer las razones que impiden realizar el armado del edificio.");
+      break;
+    case "4":
+      titulo = "INFORME DE PREFACTIBILIDAD PARA RECONVERSION DE EDIFICIO";
+      doc.getBody().replaceText("<<OBJ>>", "Dar a conocer las alternativas para realizar el cambio de equipos de tecnologia coaxial a los nuevos equipos de fibra optica.");
+      break;
     default: break;
   }
+
+
 
 
   //reemplazar los datos \
@@ -167,19 +184,31 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
 
 
 
-  if (url != "0") {
 
-    let imagenn = DriveApp.getFileById(url);
-    let imageninsertar2 = doc.getBody().appendImage(imagenn.getBlob()).setHeight(500).setWidth(500);
+  if ((ObsGeneral != "") && ((url == "0"))) {
 
+    //doc.getBody().insertParagraph(35,"").appendPageBreak();
+    //doc.getBody().replaceText("<<OBSGENERAL>>", "Observación General");
+    doc.getBody().insertParagraph(37, ObsGeneral);
   }
 
 
-  doc.getBody().insertParagraph(30, "TEXTO INSERTADO EN LA POSICION 30");
-  //doc.getBody().insertTable(20, tabla);
-  //doc.getBody().insertTable(30).appendTable().appendTableRow().appendTableCell().appendImage(imagen7.getBlob()).setHeight(280).setWidth(280);
-  //doc.getBody().insertTable(30, [['Test Text']]);
+  if (url != "0") {
 
+    let imagenn = DriveApp.getFileById(url);
+    doc.getBody().insertParagraph(36, "").appendPageBreak();
+
+    doc.getBody().insertParagraph(38, ObsGeneral);
+
+    doc.getBody().insertImage(40, imagenn.getBlob()).setHeight(400).setWidth(400);
+
+
+
+    //let imageninsertar2 = doc.getBody().appendImage(imagenn.getBlob()).setHeight(500).setWidth(500);
+    //doc.getBody().insertTable(35, [['Test Text'],['Test Text']]);
+
+
+  }
 
   return (idDocNuevo);
 }
@@ -207,7 +236,7 @@ function obtenerFecha() {
     case 11: var mes = "Diciembre"; break;
   }
 
-  let r = dia + "/" + mes + "/" + anio;
+  let r = dia + " de " + mes + " de " + anio;
   return (r);
 }
 
@@ -218,4 +247,5 @@ function include(filename) {
     .getContent()
 
 }
+
 
