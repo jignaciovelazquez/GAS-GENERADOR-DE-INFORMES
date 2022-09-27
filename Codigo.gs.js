@@ -44,6 +44,15 @@ function uploadFiles(obj) {
 
 }
 
+function uploadFiles2(obj) {
+
+  let file = Utilities.newBlob(obj.bytes, obj.mimeType, obj.filename);
+  let folder = DriveApp.getFolderById("1E2uXbB_HdbWiqcbd-V7Vl5e570SF8K9A");
+  let createFile = folder.createFile(file);
+  return createFile.getId();
+
+}
+
 
 
 function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, contacto, permiso, competencia, local, propuestas, ObsPropuesta, ObsGeneral) {
