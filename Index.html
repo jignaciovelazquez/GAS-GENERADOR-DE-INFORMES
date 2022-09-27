@@ -103,27 +103,41 @@
                         </div>
                     </div>
 
+
+
+
                     <div class="col-12 position-relative">
                         <div class="row">
-                            <label for="PISOS" class="col-sm-3 col-form-label text-start">Pisos:</label>
-                            <div class="col-sm-5">
-                                <input type="number" class="form-control" id="PISOS"
-                                    placeholder="Ingrese la cantidad de Pisos" required>
-                                <div class="invalid-tooltip">
-                                    ¡Debes ingresar la cantidad de Pisos!
+                            <div class="input-group">
+                                <label for="PISOS" class="col-sm-3 col-form-label text-start">Pisos:</label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" id="PISOS"
+                                        placeholder="Ingrese la cantidad de Pisos" required>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes ingresar la cantidad de Pisos!
+                                    </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <input type="range" class="form-range" min="1" max="25" id="RangoPisos">
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
                     <div class="col-12 position-relative">
                         <div class="row">
-                            <label for="DPTOS" class="col-sm-3 col-form-label text-start">Departamentos:</label>
-                            <div class="col-sm-5">
-                                <input type="number" class="form-control" id="DPTOS"
-                                    placeholder="Ingrese la cantidad de UF" required>
-                                <div class="invalid-tooltip">
-                                    ¡Debes ingresar la cantidad de Dptos!
+                            <div class="input-group">
+                                <label for="DPTOS" class="col-sm-3 col-form-label text-start">Departamentos:</label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" id="DPTOS"
+                                        placeholder="Ingrese la cantidad de UF" required>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes ingresar la cantidad de Dptos!
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="range" class="form-range" min="1" max="60" id="RangoDPTOS">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +149,7 @@
                             <div class="col-sm-5">
                                 <select class="form-select" id="TIPOINFO" required>
                                     <option selected disabled value="">Seleccione</option>
-                                    <option value="1" disabled>PROPUESTA PARA ARMADO (permiso)</option>
+                                    <!-- <option value="1" disabled>PROPUESTA PARA ARMADO (permiso)</option> -->
                                     <option value="2">PREFACTIBILIDAD PARA ARMADO</option>
                                     <option value="3">INCUMPLIMIENTO DE EDIFICIO</option>
                                     <option value="4">PREFACTIBILIDAD PARA RECONVERSIÓN DE EDIFICIO</option>
@@ -193,11 +207,11 @@
                         <div class="row mt-1">
                             <div class="input-group">
                                 <div class="col-3 text-start">
-                                    <label for="TELEFN1" class="col-form-label text-start">Tipo de Contacto:</label>
+                                    <label for="TELEFN2" class="col-form-label text-start">Tipo de Contacto:</label>
                                 </div>
                                 <div class="col-2">
                                     <select class="form-select" id="TELEFN2">
-                                        <option selected disabled value="">Seleccione</option>
+                                        <option selected value="">Seleccione</option>
                                         <option value="Administracion">Administracion</option>
                                         <option value="Encargado">Encargado</option>
                                         <option value="Firmante">Firmante</option>
@@ -218,11 +232,11 @@
                         <div class="row mt-1">
                             <div class="input-group">
                                 <div class="col-3 text-start">
-                                    <label for="TELEFN1" class="col-form-label text-start">Tipo de Contacto:</label>
+                                    <label for="TELEFN3" class="col-form-label text-start">Tipo de Contacto:</label>
                                 </div>
                                 <div class="col-2">
                                     <select class="form-select" id="TELEFN3">
-                                        <option selected disabled value="">Seleccione</option>
+                                        <option selected value="">Seleccione</option>
                                         <option value="Administracion">Administracion</option>
                                         <option value="Encargado">Encargado</option>
                                         <option value="Firmante">Firmante</option>
@@ -241,7 +255,7 @@
                         </div>
                     </div>
 
-
+                    <!--
                     <div class="col-12 position-relative">
                         <div class="row">
                             <label for="PERMISO" class="col-sm-3 col-form-label text-start">Tipo de Permiso: </label>
@@ -262,7 +276,7 @@
                             </div>
                         </div>
                     </div>
-
+-->
                     <div class="col-12 position-relative">
                         <div class="row">
                             <div class="input-group">
@@ -314,48 +328,6 @@
 
                     <div class="col-12 position-relative">
                         <div class="row">
-
-                            <label for="ARMADO" class="col-sm-3 col-form-label text-start">Propuesta de
-                                Armado:</label>
-
-                        </div>
-
-                        <div class="row" id="switchPropuestas">
-
-                            <div class="col-sm-12">
-                                <div class="form-check form-check-inline form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox1"
-                                        value="1" required>
-                                    <label class="form-check-label" for="inlineCheckbox1">HFC - EXTERIOR</label>
-                                </div>
-                                <div class="form-check form-check-inline form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox2"
-                                        value="2" required>
-                                    <label class="form-check-label" for="inlineCheckbox2">HFC - MONTANTE</label>
-                                </div>
-                                <div class="form-check form-check-inline form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox3"
-                                        value="3" required>
-                                    <label class="form-check-label" for="inlineCheckbox4">FTTH - EXTERIOR</label>
-                                </div>
-                                <div class="form-check form-check-inline form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox4"
-                                        value="4" required>
-                                    <label class="form-check-label" for="inlineCheckbox5">FTTH - MONTANTE</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="DIVOBS" class="col-12 position-relative">
-                        <div class="col-sm-12">
-                            <textarea id="OBS" class="form-control" rows="4"></textarea>
-                        </div>
-                    </div>
-
-
-                    <div class="col-12 position-relative">
-                        <div class="row">
                             <label for="OBS1" class="col-sm-3 col-form-label text-start">Observaciones
                                 Adicionales:</label>
                         </div>
@@ -378,6 +350,50 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="col-12 position-relative">
+                        <div class="row">
+
+                            <label for="ARMADO" class="col-sm-3 col-form-label text-start">Propuesta de
+                                Armado:</label>
+
+                        </div>
+
+                        <div class="row" id="switchPropuestas">
+                            <div class="col-sm-12">
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox1"
+                                        value="1" required>
+                                    <label class="form-check-label" for="inlineCheckbox1">HFC - EXTERIOR</label>
+                                </div>
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox2"
+                                        value="2" required>
+                                    <label class="form-check-label" for="inlineCheckbox2">HFC - MONTANTE</label>
+                                </div>
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox3"
+                                        value="3" required>
+                                    <label class="form-check-label" for="inlineCheckbox3">FTTH - EXTERIOR</label>
+                                </div>
+                                <div class="form-check form-check-inline form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox4"
+                                        value="4" required>
+                                    <label class="form-check-label" for="inlineCheckbox4">FTTH - MONTANTE</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="DIVOBS" class="col-12 position-relative">
+                        <div class="col-sm-12">
+                            <textarea id="OBS" class="form-control" rows="4"></textarea>
+                        </div>
+                    </div>
+
+
+
 
 
 
@@ -422,7 +438,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

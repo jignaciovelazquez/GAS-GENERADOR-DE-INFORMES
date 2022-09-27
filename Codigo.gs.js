@@ -49,8 +49,6 @@ function uploadFiles(obj) {
 function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, contacto, permiso, competencia, local, propuestas, ObsPropuesta, ObsGeneral) {
 
 
-
-
   let fechaActual = obtenerFecha();
   let loc = "";
   let locCant = 0;
@@ -108,7 +106,7 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
   doc.getBody().replaceText("<<FECHA>>", fechaActual);
   doc.getBody().replaceText("<<TITULO>>", titulo);
   doc.getBody().replaceText("<<contactos>>", contacto);
-  doc.getBody().replaceText("<<permiso>>", permiso);
+  //doc.getBody().replaceText("<<permiso>>", permiso);
   doc.getBody().replaceText("<<locales>>", loc);
   doc.getBody().replaceText("<<localestoman>>", locCant);
   doc.getBody().replaceText("<<competencia>>", competencia);
@@ -196,16 +194,12 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
   if (url != "0") {
 
     let imagenn = DriveApp.getFileById(url);
-    doc.getBody().insertParagraph(36, "").appendPageBreak();
+    doc.getBody().insertParagraph(32, "").appendPageBreak();
 
-    doc.getBody().insertParagraph(38, ObsGeneral);
+    doc.getBody().insertParagraph(35, ObsGeneral);
 
-    doc.getBody().insertImage(40, imagenn.getBlob()).setHeight(400).setWidth(400);
+    doc.getBody().insertImage(37, imagenn.getBlob()).setHeight(400).setWidth(400);
 
-
-
-    //let imageninsertar2 = doc.getBody().appendImage(imagenn.getBlob()).setHeight(500).setWidth(500);
-    //doc.getBody().insertTable(35, [['Test Text'],['Test Text']]);
 
 
   }
@@ -247,5 +241,4 @@ function include(filename) {
     .getContent()
 
 }
-
 

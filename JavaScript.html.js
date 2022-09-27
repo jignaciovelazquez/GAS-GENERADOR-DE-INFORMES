@@ -90,18 +90,22 @@ document.getElementById("switchPropuestas").addEventListener("change", () => {
 
   });
 
+})
 
-  console.log(opciones);
-  console.log(cont);
-  console.log(flagImagen);
 
+document.getElementById("RangoPisos").addEventListener("mousemove", () => {
+  document.getElementById("PISOS").value = document.getElementById("RangoPisos").value;
+})
+
+document.getElementById("RangoDPTOS").addEventListener("mousemove", () => {
+  document.getElementById("DPTOS").value = document.getElementById("RangoDPTOS").value;
 })
 
 
 
 document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
-  if ((document.getElementById("ID").value == "") || (document.getElementById("NODO").value == "") || (document.getElementById("DIRECCION").value == "") || (document.getElementById("ZONA").value == "") || (document.getElementById("PISOS").value == "") || (document.getElementById("DPTOS").value == "") || (document.getElementById("TIPOINFO").value == "") || (document.getElementById("TELEFN1").value == "") || (document.getElementById("TELEF11").value == "") || (document.getElementById("TELEF12").value == "") || (document.getElementById("TELEF13").value == "") || (document.getElementById("PERMISO").value == "") || (document.getElementById("LOCAL").value == "") || (document.getElementById("COMPETENCIA").value == "")) {
+  if ((document.getElementById("ID").value == "") || (document.getElementById("NODO").value == "") || (document.getElementById("DIRECCION").value == "") || (document.getElementById("ZONA").value == "") || (document.getElementById("PISOS").value == "") || (document.getElementById("DPTOS").value == "") || (document.getElementById("TIPOINFO").value == "") || (document.getElementById("TELEFN1").value == "") || (document.getElementById("TELEF11").value == "") || (document.getElementById("TELEF12").value == "") || (document.getElementById("TELEF13").value == "") || (document.getElementById("LOCAL").value == "") || (document.getElementById("COMPETENCIA").value == "")) {
     alert("Debe completar todos los campos")
     return
   }
@@ -127,9 +131,11 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
   document.getElementById("GENERAR").disabled = true;
 
-  setTimeout(function () {
-    document.getElementById("GENERAR").disabled = false;
-  }, 15000);
+  /*
+    setTimeout(function () {
+      document.getElementById("GENERAR").disabled = false;
+    }, 15000);
+    */
 
   let Titulo;
   let Permisoenviar;
@@ -148,14 +154,16 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
   Titulo = document.getElementById("TIPOINFO").value;
 
-  switch (document.getElementById("PERMISO").value) {
-    case "1": Permisoenviar = "Permite armado por exterior y tiene cañería destinada para CATV (montante)."; break;
-    case "2": Permisoenviar = "No permite armado por exterior, tiene cañería destinada para CATV(montante)."; break;
-    case "3": Permisoenviar = "Permite armado por exterior, no tiene cañería destinada para CATV(montante)."; break;
-    case "4": Permisoenviar = "No tiene permiso, ingreso como una VT de instalación."; break;
-    default: break;
-  }
-
+  /*
+    switch (document.getElementById("PERMISO").value) {
+      case "1": Permisoenviar = "Permite armado por exterior y tiene cañería destinada para CATV (montante)."; break;
+      case "2": Permisoenviar = "No permite armado por exterior, tiene cañería destinada para CATV(montante)."; break;
+      case "3": Permisoenviar = "Permite armado por exterior, no tiene cañería destinada para CATV(montante)."; break;
+      case "4": Permisoenviar = "No tiene permiso, ingreso como una VT de instalación."; break;
+      default: break;
+    }
+  
+  */
   switch (document.getElementById("COMPETENCIA").value) {
     case "1": Competenciaenviar = "Las competencias se encuentran armadas por Exterior y ofrecen servicios de internet y cable."; break;
     case "2": Competenciaenviar = "Las competencias se encuentran armadas por Montante y ofrecen servicios de internet y cable."; break;
@@ -187,8 +195,6 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
   //--------------------------  -------------------------------
 
-
-  console.log(ObsGeneral);
 
 
   google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones, ObsPropuesta, ObsGeneral);
@@ -253,18 +259,12 @@ function multiContactos() {
 
 
 
-
-
-
-
-
 function abrirNuevoTab(idDoc) {
   // Abrir nuevo tab
+  document.getElementById("GENERAR").disabled = false;
   let url = "https://docs.google.com/document/d/" + idDoc + "/edit";
   let win = window.open(url, '_blank');
   win.focus();
   // Cambiar el foco al nuevo tab (punto opcional)
 }
-
-
 

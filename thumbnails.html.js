@@ -2,10 +2,12 @@
 
 document.getElementById("imaUpload").addEventListener("change", handleFiles, false);
 
+
+
 function handleFiles(f) {
 
     flagImagen = 1;
-
+    document.getElementById("GENERAR").disabled = true;
     let previewDiv = document.getElementById("preview").innerHTML = "";
     const files = document.getElementById("imaUpload").files;
 
@@ -56,10 +58,11 @@ function FileUpload(img, file) {
 
             let imagenID = e;
             IDPARAMONTAR = imagenID;
-
+            document.getElementById("GENERAR").disabled = false;
 
         }).uploadFiles(obj);
 
     };
     reader.readAsArrayBuffer(file);
+
 }
