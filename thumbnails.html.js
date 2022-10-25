@@ -42,10 +42,9 @@ function uploadFile() {
 
     const imgs = document.querySelectorAll(".obj");
 
-    for (let i = 0; i < imgs.length; i++) {
-        new FileUpload(imgs[i], imgs[i].file);
 
-    }
+    new FileUpload(imgs[0], imgs[0].file);
+
 
 }
 
@@ -63,6 +62,7 @@ function FileUpload(img, file) {
 
             let imagenID = e;
             IDPARAMONTAR = imagenID;
+            console.log(IDPARAMONTAR);
             document.getElementById("GENERAR").disabled = false;
 
         }).uploadFiles(obj);
@@ -86,14 +86,14 @@ function handleFiles2(f) {
     const files2 = document.getElementById("imaUpload2").files;
 
     for (let i = 0; i < files2.length; i++) {
-        const file = files2[i];
+        const file2 = files2[i];
 
-        if (!file.type.startsWith('image/')) { continue }
+        if (!file2.type.startsWith('image/')) { continue }
 
         const img2 = document.createElement("img");
-        img2.classList.add("obj");
+        img2.classList.add("obj2");
         img2.classList.add("img-fluid");
-        img2.file = file;
+        img2.file = file2;
         img2.style.height = "400px";
         img2.style.width = "400px";
 
@@ -101,7 +101,7 @@ function handleFiles2(f) {
 
         const reader = new FileReader();
         reader.onload = (function (aImg) { return function (e) { aImg.src = e.target.result; }; })(img2);
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file2);
     }
 
     uploadFile2();
@@ -112,12 +112,10 @@ function uploadFile2() {
 
     const selectedFile = document.getElementById("imaUpload2").files[0];
 
-    const imgs2 = document.querySelectorAll(".obj");
+    const imgs2 = document.querySelectorAll(".obj2");
 
-    for (let i = 0; i < imgs2.length; i++) {
-        new FileUpload2(imgs2[i], imgs2[i].file);
+    new FileUpload2(imgs2[0], imgs2[0].file);
 
-    }
 
 }
 
@@ -134,7 +132,8 @@ function FileUpload2(img, file) {
         google.script.run.withSuccessHandler((e) => {
 
             let imagenID = e;
-            IDPARAMONTAR = imagenID;
+            IDPARAMONTAR2 = imagenID;
+            console.log(IDPARAMONTAR2);
             document.getElementById("GENERAR").disabled = false;
 
         }).uploadFiles2(obj);

@@ -1,4 +1,3 @@
-
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
   'use strict'
@@ -22,9 +21,12 @@
 //Variables
 
 var IDPARAMONTAR = "0";
+var IDPARAMONTAR2 = "0";
 var opciones = [];
 var cont = 0;
 var flagImagen = 0;
+var Pie1 = "0";
+var Pie2 = "0";
 
 //--------------------  Eventos  -------------------------------------
 
@@ -45,6 +47,11 @@ document.getElementById("BUSCARID").addEventListener('click', () => {
   }).buscarID(ID);
 })
 
+document.getElementById("BORRAR").addEventListener('click', () => {
+  location.reload()
+})
+
+
 document.getElementById("LOCAL").addEventListener("change", () => {
 
   if ((document.getElementById("LOCAL").value == "NO")) {
@@ -56,6 +63,37 @@ document.getElementById("LOCAL").addEventListener("change", () => {
   }
 
 })
+
+
+document.getElementById("TIPOINFO").addEventListener("change", () => {
+
+  if ((document.getElementById("TIPOINFO").value == "2")) {
+    document.getElementById("inlineCheckbox1").disabled = false;
+    document.getElementById("inlineCheckbox2").disabled = false;
+    document.getElementById("inlineCheckbox3").disabled = false;
+    document.getElementById("inlineCheckbox4").disabled = false;
+    document.getElementById("OBS").disabled = false;
+  }
+
+  if ((document.getElementById("TIPOINFO").value == "3")) {
+    document.getElementById("inlineCheckbox1").disabled = true;
+    document.getElementById("inlineCheckbox2").disabled = true;
+    document.getElementById("inlineCheckbox3").disabled = true;
+    document.getElementById("inlineCheckbox4").disabled = true;
+    document.getElementById("OBS").disabled = true;
+  }
+
+  if ((document.getElementById("TIPOINFO").value == "4")) {
+    document.getElementById("inlineCheckbox1").disabled = false;
+    document.getElementById("inlineCheckbox2").disabled = false;
+    document.getElementById("inlineCheckbox3").disabled = false;
+    document.getElementById("inlineCheckbox4").disabled = false;
+    document.getElementById("OBS").disabled = false;
+  }
+
+})
+
+
 
 document.getElementById("switchPropuestas").addEventListener("change", () => {
 
@@ -101,6 +139,13 @@ document.getElementById("RangoDPTOS").addEventListener("mousemove", () => {
   document.getElementById("DPTOS").value = document.getElementById("RangoDPTOS").value;
 })
 
+document.getElementById("PIE1").addEventListener("change", () => {
+  Pie1 = document.getElementById("PIE1").value;
+})
+document.getElementById("PIE2").addEventListener("change", () => {
+  Pie2 = document.getElementById("PIE2").value;
+})
+
 
 
 document.getElementById("FORMULARIO").addEventListener('submit', () => {
@@ -113,9 +158,13 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
 
   //-------------------------- obligatoriedad de Propuesta de Armado -------------------------------
-  if (cont == 0) {
-    alert("Debe ingresar al menos una Propuesta de Armado para la gestion")
-    return
+
+  if (document.getElementById("TIPOINFO").value != "3") {
+
+    if (cont == 0) {
+      alert("Debe ingresar al menos una Propuesta de Armado para la gestion")
+      return
+    }
   }
 
   //-------------------------- obligatoriedad de Observacion Adicional si carga una imagen -------------------------------
@@ -197,7 +246,7 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
 
 
-  google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones, ObsPropuesta, ObsGeneral);
+  google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, IDPARAMONTAR2, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones, ObsPropuesta, ObsGeneral, Pie1, Pie2);
 
 })
 
@@ -257,8 +306,6 @@ function multiContactos() {
 
 
 
-
-
 function abrirNuevoTab(idDoc) {
   // Abrir nuevo tab
   document.getElementById("GENERAR").disabled = false;
@@ -267,4 +314,3 @@ function abrirNuevoTab(idDoc) {
   win.focus();
   // Cambiar el foco al nuevo tab (punto opcional)
 }
-

@@ -1,6 +1,4 @@
 
-
-
 function doGet() {
   var html = HtmlService.createTemplateFromFile('Index.html').evaluate()
     .setTitle("Generador de informes")
@@ -38,7 +36,7 @@ function buscarID(id) {
 function uploadFiles(obj) {
 
   let file = Utilities.newBlob(obj.bytes, obj.mimeType, obj.filename);
-  let folder = DriveApp.getFolderById("1E2uXbB_HdbWiqcbd-V7Vl5e570SF8K9A");
+  let folder = DriveApp.getFolderById("1yqqspPI_fys2D6TUcBUf2f9AfI4eKIg6");
   let createFile = folder.createFile(file);
   return createFile.getId();
 
@@ -47,7 +45,7 @@ function uploadFiles(obj) {
 function uploadFiles2(obj) {
 
   let file = Utilities.newBlob(obj.bytes, obj.mimeType, obj.filename);
-  let folder = DriveApp.getFolderById("1E2uXbB_HdbWiqcbd-V7Vl5e570SF8K9A");
+  let folder = DriveApp.getFolderById("1yqqspPI_fys2D6TUcBUf2f9AfI4eKIg6");
   let createFile = folder.createFile(file);
   return createFile.getId();
 
@@ -55,7 +53,7 @@ function uploadFiles2(obj) {
 
 
 
-function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, contacto, permiso, competencia, local, propuestas, ObsPropuesta, ObsGeneral) {
+function Escribir(id, nodo, direccion, zona, pisos, dptos, url, url2, tituloarmado, contacto, permiso, competencia, local, propuestas, ObsPropuesta, ObsGeneral, Pie1, Pie2) {
 
 
   let fechaActual = obtenerFecha();
@@ -96,7 +94,7 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
       doc.getBody().replaceText("<<OBJ>>", "Dar a conocer las razones que impiden realizar el armado del edificio.");
       break;
     case "4":
-      titulo = "INFORME DE PREFACTIBILIDAD PARA RECONVERSION DE EDIFICIO";
+      titulo = "INFORME DE PREFACTIBILIDAD PARA RECONVERSIÓN DE EDIFICIO";
       doc.getBody().replaceText("<<OBJ>>", "Dar a conocer las alternativas para realizar el cambio de equipos de tecnologia coaxial a los nuevos equipos de fibra optica.");
       break;
     default: break;
@@ -192,11 +190,11 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
 
 
 
-  if ((ObsGeneral != "") && ((url == "0"))) {
+  if ((ObsGeneral != "") && (url == "0") && (url2 == "0")) {
 
     //doc.getBody().insertParagraph(35,"").appendPageBreak();
     //doc.getBody().replaceText("<<OBSGENERAL>>", "Observación General");
-    doc.getBody().insertParagraph(37, ObsGeneral);
+    doc.getBody().insertParagraph(36, ObsGeneral);
   }
 
 
@@ -207,9 +205,18 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, tituloarmado, co
 
     doc.getBody().insertParagraph(35, ObsGeneral);
 
-    doc.getBody().insertImage(37, imagenn.getBlob()).setHeight(400).setWidth(400);
+    doc.getBody().insertImage(37, imagenn.getBlob()).setHeight(300).setWidth(300);
+    doc.getBody().insertParagraph(38, Pie1);
 
+  }
 
+  if (url2 != "0") {
+
+    let imagenn2 = DriveApp.getFileById(url2);
+    //doc.getBody().insertParagraph(32, "").appendPageBreak();
+
+    doc.getBody().insertImage(39, imagenn2.getBlob()).setHeight(300).setWidth(300);
+    doc.getBody().insertParagraph(40, Pie2);
 
   }
 
@@ -250,4 +257,3 @@ function include(filename) {
     .getContent()
 
 }
-
