@@ -67,6 +67,10 @@ document.getElementById("LOCAL").addEventListener("change", () => {
 
 document.getElementById("TIPOINFO").addEventListener("change", () => {
 
+  mostrarOpciones();
+  document.getElementById("OBS1").value = "";
+  document.getElementById("PIE1").value = "";
+
   if ((document.getElementById("TIPOINFO").value == "2")) {
     document.getElementById("inlineCheckbox1").disabled = false;
     document.getElementById("inlineCheckbox2").disabled = false;
@@ -89,6 +93,17 @@ document.getElementById("TIPOINFO").addEventListener("change", () => {
     document.getElementById("inlineCheckbox3").disabled = false;
     document.getElementById("inlineCheckbox4").disabled = false;
     document.getElementById("OBS").disabled = false;
+  }
+
+  if ((document.getElementById("TIPOINFO").value == "5")) {
+    document.getElementById("inlineCheckbox1").disabled = true;
+    document.getElementById("inlineCheckbox2").disabled = true;
+    document.getElementById("inlineCheckbox3").disabled = true;
+    document.getElementById("inlineCheckbox4").disabled = true;
+    document.getElementById("OBS").disabled = true;
+    document.getElementById("OBS1").value = "Motivos de Cierre en VTs: ";
+    document.getElementById("PIE1").value = "Fuente: comentario ETAD ";
+    ocultarOpciones();
   }
 
 })
@@ -130,7 +145,7 @@ document.getElementById("switchPropuestas").addEventListener("change", () => {
 
 })
 
-
+/*
 document.getElementById("RangoPisos").addEventListener("mousemove", () => {
   document.getElementById("PISOS").value = document.getElementById("RangoPisos").value;
 })
@@ -138,6 +153,7 @@ document.getElementById("RangoPisos").addEventListener("mousemove", () => {
 document.getElementById("RangoDPTOS").addEventListener("mousemove", () => {
   document.getElementById("DPTOS").value = document.getElementById("RangoDPTOS").value;
 })
+*/
 
 document.getElementById("PIE1").addEventListener("change", () => {
   Pie1 = document.getElementById("PIE1").value;
@@ -150,16 +166,31 @@ document.getElementById("PIE2").addEventListener("change", () => {
 
 document.getElementById("FORMULARIO").addEventListener('submit', () => {
 
-  if ((document.getElementById("ID").value == "") || (document.getElementById("NODO").value == "") || (document.getElementById("DIRECCION").value == "") || (document.getElementById("ZONA").value == "") || (document.getElementById("PISOS").value == "") || (document.getElementById("DPTOS").value == "") || (document.getElementById("TIPOINFO").value == "") || (document.getElementById("TELEFN1").value == "") || (document.getElementById("TELEF11").value == "") || (document.getElementById("TELEF12").value == "") || (document.getElementById("TELEF13").value == "") || (document.getElementById("LOCAL").value == "") || (document.getElementById("COMPETENCIA").value == "")) {
-    alert("Debe completar todos los campos")
+  if ((document.getElementById("ID").value == "") || (document.getElementById("NODO").value == "") || (document.getElementById("DIRECCION").value == "") || (document.getElementById("ZONA").value == "") || (document.getElementById("PISOS").value == "") || (document.getElementById("DPTOS").value == "") || (document.getElementById("TIPOINFO").value == "")) {
+    alert("Debe completar todos los campos 1")
     return
+  }
+
+  if ((document.getElementById("TIPOINFO").value != "5") && ((document.getElementById("TELEFN1").value == "") || (document.getElementById("TELEF11").value == "") || (document.getElementById("TELEF12").value == "") || (document.getElementById("TELEF13").value == "") || (document.getElementById("LOCAL").value == "") || (document.getElementById("COMPETENCIA").value == ""))) {
+    alert("Debe completar todos los campos 2")
+    return
+  } else {
+    if (flagImagen == 0) {
+      alert("!Debe completar al menos una imagen adjunta de la nota de incumplimiento¡");
+      return
+    }
+    if (document.getElementById("OBS1").value == "Motivos de Cierre en VTs: ") {
+      alert("!Debe completar el numero de VT donde se describe el incumplimiento¡");
+      return
+    }
+
   }
 
 
 
   //-------------------------- obligatoriedad de Propuesta de Armado -------------------------------
 
-  if (document.getElementById("TIPOINFO").value != "3") {
+  if ((document.getElementById("TIPOINFO").value != "3") && (document.getElementById("TIPOINFO").value != "5")) {
 
     if (cont == 0) {
       alert("Debe ingresar al menos una Propuesta de Armado para la gestion")
@@ -186,19 +217,21 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
     }, 15000);
     */
 
-  let Titulo;
-  let Permisoenviar;
-  let Competenciaenviar;
-
-
-  CampoID = document.getElementById("ID").value;
-  CampoNodo = document.getElementById("NODO").value.toUpperCase();
-  CampoDireccion = document.getElementById("DIRECCION").value.toUpperCase();
-  CampoZona = document.getElementById("ZONA").value.toUpperCase();
-  CampoPisos = document.getElementById("PISOS").value;
-  CampoDptos = document.getElementById("DPTOS").value;
+  let Titulo = "";
+  let Permisoenviar = "";
+  let CampoID = document.getElementById("ID").value;
+  let CampoNodo = document.getElementById("NODO").value.toUpperCase();
+  let CampoDireccion = document.getElementById("DIRECCION").value.toUpperCase();
+  let CampoZona = document.getElementById("ZONA").value.toUpperCase();
+  let CampoPisos = document.getElementById("PISOS").value;
+  let CampoDptos = document.getElementById("DPTOS").value;
   let ObsPropuesta = document.getElementById("OBS").value;
   let ObsGeneral = document.getElementById("OBS1").value;
+  Pie1 = document.getElementById("PIE1").value;
+  Pie2 = document.getElementById("PIE2").value;
+  let Competenciaenviar = "";
+  let Contact = "";
+  let localesEnviar = 0;
 
 
   Titulo = document.getElementById("TIPOINFO").value;
@@ -213,37 +246,46 @@ document.getElementById("FORMULARIO").addEventListener('submit', () => {
     }
   
   */
-  switch (document.getElementById("COMPETENCIA").value) {
-    case "1": Competenciaenviar = "Las competencias se encuentran armadas por Exterior y ofrecen servicios de internet y cable."; break;
-    case "2": Competenciaenviar = "Las competencias se encuentran armadas por Montante y ofrecen servicios de internet y cable."; break;
-    case "3": Competenciaenviar = "Las competencias se encuentran armadas por Exterior y Montante y ofrecen servicios de internet y cable."; break;
-    case "4": Competenciaenviar = "El Edificio no posee otras empresas instaladas."; break;
-    default: break;
-  }
 
-  //-------------------------- Formato para el Campo de multiples contactos -------------------------------
+  if (Titulo != "5") {
 
-  let Contact = multiContactos();
-
-  //-------------------------- Locales -------------------------------
-
-  if ((document.getElementById("LOCAL").value == "SI")) {
-
-    if ((document.getElementById("LOCALCANT").value == "")) {
-      alert("!indicar que SI existen locales tomando del Edif requiere que indique la cantidad de los mismos¡")
-      return
+    switch (document.getElementById("COMPETENCIA").value) {
+      case "1": Competenciaenviar = "Las competencias se encuentran armadas por Exterior y ofrecen servicios de internet y cable."; break;
+      case "2": Competenciaenviar = "Las competencias se encuentran armadas por Montante y ofrecen servicios de internet y cable."; break;
+      case "3": Competenciaenviar = "Las competencias se encuentran armadas por Exterior y Montante y ofrecen servicios de internet y cable."; break;
+      case "4": Competenciaenviar = "El Edificio no posee otras empresas instaladas."; break;
+      default: break;
     }
-    else {
-      localesEnviar = document.getElementById("LOCALCANT").value;
-    }
-  }
 
-  if ((document.getElementById("LOCAL").value == "NO")) {
+    //-------------------------- Formato para el Campo de multiples contactos -------------------------------
+
+    Contact = multiContactos();
+
+    //-------------------------- Locales -------------------------------
+
+    if ((document.getElementById("LOCAL").value == "SI")) {
+
+      if ((document.getElementById("LOCALCANT").value == "")) {
+        alert("!indicar que SI existen locales tomando del Edif requiere que indique la cantidad de los mismos¡")
+        return
+      }
+      else {
+        localesEnviar = document.getElementById("LOCALCANT").value;
+      }
+    }
+
+    if ((document.getElementById("LOCAL").value == "NO")) {
+      localesEnviar = 0;
+    }
+
+    //--------------------------  -------------------------------
+
+  } else {
+    Competenciaenviar = "";
+    Contact = "";
     localesEnviar = 0;
+    ObsPropuesta = "";
   }
-
-  //--------------------------  -------------------------------
-
 
 
   google.script.run.withSuccessHandler(abrirNuevoTab).Escribir(CampoID, CampoNodo, CampoDireccion, CampoZona, CampoPisos, CampoDptos, IDPARAMONTAR, IDPARAMONTAR2, Titulo, Contact, Permisoenviar, Competenciaenviar, localesEnviar, opciones, ObsPropuesta, ObsGeneral, Pie1, Pie2);
@@ -313,4 +355,14 @@ function abrirNuevoTab(idDoc) {
   let win = window.open(url, '_blank');
   win.focus();
   // Cambiar el foco al nuevo tab (punto opcional)
+}
+
+const ocultarOpciones = () => {
+  document.getElementById("OPCIONESVARIAS").classList.remove("d-block");
+  document.getElementById("OPCIONESVARIAS").classList.add("d-none");
+}
+
+const mostrarOpciones = () => {
+  document.getElementById("OPCIONESVARIAS").classList.add("d-block");
+  document.getElementById("OPCIONESVARIAS").classList.remove("d-none");
 }

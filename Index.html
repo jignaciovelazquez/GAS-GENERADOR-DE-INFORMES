@@ -117,9 +117,11 @@
                                         ¡Debes ingresar la cantidad de Pisos!
                                     </div>
                                 </div>
+                                <!--
                                 <div class="col-sm-6">
                                     <input type="range" class="form-range" min="1" max="25" id="RangoPisos">
                                 </div>
+                                -->
 
                             </div>
                         </div>
@@ -136,9 +138,11 @@
                                         ¡Debes ingresar la cantidad de Dptos!
                                     </div>
                                 </div>
+                                <!--
                                 <div class="col-sm-6">
                                     <input type="range" class="form-range" min="1" max="60" id="RangoDPTOS">
                                 </div>
+                                -->
                             </div>
                         </div>
                     </div>
@@ -152,6 +156,7 @@
                                     <!-- <option value="1" disabled>PROPUESTA PARA ARMADO (permiso)</option> -->
                                     <option value="2">PREFACTIBILIDAD PARA ARMADO</option>
                                     <option value="3">INCUMPLIMIENTO DE EDIFICIO</option>
+                                    <option value="5">INCUMPLIMIENTO VISITA FORZADA</option>
                                     <option value="4">PREFACTIBILIDAD PARA RECONVERSIÓN DE EDIFICIO</option>
                                 </select>
                                 <div class="invalid-tooltip">
@@ -161,101 +166,102 @@
                         </div>
                     </div>
 
-                    <div class="col-12 position-relative">
+                    <section id="OPCIONESVARIAS">
 
+                        <div class="col-12 position-relative">
 
-
-
-                        <div class="row">
-                            <div class="input-group">
-                                <div class="col-3 text-start">
-                                    <label for="TELEFN1" class="col-form-label text-start">Tipo de Contacto:</label>
-                                </div>
-                                <div class="col-2">
-                                    <select class="form-select" id="TELEFN1" required>
-                                        <option selected disabled value="">Seleccione</option>
-                                        <option value="Administración">Administración</option>
-                                        <option value="Encargado">Encargado</option>
-                                        <option value="Firmante">Firmante</option>
-                                    </select>
-                                    <div class="invalid-tooltip">
-                                        ¡Debes ingresar al menos un tipo de contacto!
+                            <div class="row">
+                                <div class="input-group">
+                                    <div class="col-3 text-start">
+                                        <label for="TELEFN1" class="col-form-label text-start">Tipo de Contacto:</label>
+                                    </div>
+                                    <div class="col-2">
+                                        <select class="form-select" id="TELEFN1" required>
+                                            <option selected disabled value="">Seleccione</option>
+                                            <option value="Administración">Administración</option>
+                                            <option value="Encargado">Encargado</option>
+                                            <option value="Firmante">Firmante</option>
+                                        </select>
+                                        <div class="invalid-tooltip">
+                                            ¡Debes ingresar al menos un tipo de contacto!
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" id="TELEF11" placeholder="Nombre"
+                                            required>
+                                        <div class="invalid-tooltip">
+                                            ¡Debes ingresar al menos un nombre del contacto!
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="text" class="form-control" id="TELEF12" placeholder="Telefono"
+                                            required>
+                                        <div class="invalid-tooltip">
+                                            ¡Debes ingresar al menos un numero de contacto!
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="text" class="form-control" id="TELEF13" placeholder="Mail"
+                                            required>
+                                        <div class="invalid-tooltip">
+                                            ¡Debes ingresar al menos un mail de contacto ( - = No Indica)!
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" id="TELEF11" placeholder="Nombre" required>
-                                    <div class="invalid-tooltip">
-                                        ¡Debes ingresar al menos un nombre del contacto!
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="input-group">
+                                    <div class="col-3 text-start">
+                                        <label for="TELEFN2" class="col-form-label text-start">Tipo de Contacto:</label>
+                                    </div>
+                                    <div class="col-2">
+                                        <select class="form-select" id="TELEFN2">
+                                            <option selected value="">Seleccione</option>
+                                            <option value="Administracion">Administracion</option>
+                                            <option value="Encargado">Encargado</option>
+                                            <option value="Firmante">Firmante</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" id="TELEF21" placeholder="Nombre">
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="text" class="form-control" id="TELEF22" placeholder="Telefono">
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="text" class="form-control" id="TELEF23" placeholder="Mail">
                                     </div>
                                 </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" id="TELEF12" placeholder="Telefono"
-                                        required>
-                                    <div class="invalid-tooltip">
-                                        ¡Debes ingresar al menos un numero de contacto!
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="input-group">
+                                    <div class="col-3 text-start">
+                                        <label for="TELEFN3" class="col-form-label text-start">Tipo de Contacto:</label>
                                     </div>
-                                </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" id="TELEF13" placeholder="Mail" required>
-                                    <div class="invalid-tooltip">
-                                        ¡Debes ingresar al menos un mail de contacto ( - = No Indica)!
+                                    <div class="col-2">
+                                        <select class="form-select" id="TELEFN3">
+                                            <option selected value="">Seleccione</option>
+                                            <option value="Administracion">Administracion</option>
+                                            <option value="Encargado">Encargado</option>
+                                            <option value="Firmante">Firmante</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" id="TELEF31" placeholder="Nombre">
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="text" class="form-control" id="TELEF32" placeholder="Telefono">
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="text" class="form-control" id="TELEF33" placeholder="Mail">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row mt-1">
-                            <div class="input-group">
-                                <div class="col-3 text-start">
-                                    <label for="TELEFN2" class="col-form-label text-start">Tipo de Contacto:</label>
-                                </div>
-                                <div class="col-2">
-                                    <select class="form-select" id="TELEFN2">
-                                        <option selected value="">Seleccione</option>
-                                        <option value="Administracion">Administracion</option>
-                                        <option value="Encargado">Encargado</option>
-                                        <option value="Firmante">Firmante</option>
-                                    </select>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" id="TELEF21" placeholder="Nombre">
-                                </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" id="TELEF22" placeholder="Telefono">
-                                </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" id="TELEF23" placeholder="Mail">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mt-1">
-                            <div class="input-group">
-                                <div class="col-3 text-start">
-                                    <label for="TELEFN3" class="col-form-label text-start">Tipo de Contacto:</label>
-                                </div>
-                                <div class="col-2">
-                                    <select class="form-select" id="TELEFN3">
-                                        <option selected value="">Seleccione</option>
-                                        <option value="Administracion">Administracion</option>
-                                        <option value="Encargado">Encargado</option>
-                                        <option value="Firmante">Firmante</option>
-                                    </select>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" id="TELEF31" placeholder="Nombre">
-                                </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" id="TELEF32" placeholder="Telefono">
-                                </div>
-                                <div class="col-2">
-                                    <input type="text" class="form-control" id="TELEF33" placeholder="Mail">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--
+                        <!--
                     <div class="col-12 position-relative">
                         <div class="row">
                             <label for="PERMISO" class="col-sm-3 col-form-label text-start">Tipo de Permiso: </label>
@@ -277,55 +283,56 @@
                         </div>
                     </div>
 -->
-                    <div class="col-12 position-relative">
-                        <div class="row">
-                            <div class="input-group">
-                                <div class="col-3 text-start">
-                                    <label for="LOCAL" class="col-form-label text-start">Locales tomando del
-                                        Edif:</label>
-                                </div>
-                                <div class="col-3">
-                                    <select class="form-select" id="LOCAL" required>
-                                        <option selected disabled value="">Seleccione</option>
-                                        <option value="NO">NO</option>
-                                        <option value="SI">SI</option>
-                                    </select>
-                                    <div class="invalid-tooltip">
-                                        ¡Debes indicar si existen locales tomando del
-                                        Edif!
+                        <div class="col-12 position-relative">
+                            <div class="row">
+                                <div class="input-group">
+                                    <div class="col-3 text-start">
+                                        <label for="LOCAL" class="col-form-label text-start">Locales tomando del
+                                            Edif:</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <select class="form-select" id="LOCAL" required>
+                                            <option selected disabled value="">Seleccione</option>
+                                            <option value="NO">NO</option>
+                                            <option value="SI">SI</option>
+                                        </select>
+                                        <div class="invalid-tooltip">
+                                            ¡Debes indicar si existen locales tomando del
+                                            Edif!
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" id="LOCALCANT" placeholder="Cantidad">
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" id="LOCALCANT" placeholder="Cantidad">
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 position-relative">
+                            <div class="row">
+                                <label for="COMPETENCIA" class="col-sm-3 col-form-label text-start">Info de Competencia:
+                                </label>
+                                <div class="col-sm-6">
+                                    <select class="form-select" id="COMPETENCIA" required>
+                                        <option selected disabled value="">Seleccione</option>
+                                        <option value="1">Las competencias se encuentran armada por Exterior y ofrecen
+                                            servicios de internet y cable.</option>
+                                        <option value="2">Las competencias se encuentran armada por Montante y ofrecen
+                                            servicios de internet y cable.</option>
+                                        <option value="3">Las competencias se encuentran armada por Exterior y Montante
+                                            y
+                                            ofrecen servicios de internet y cable.</option>
+                                        <option value="4">El Edificio no posee otras empresas instaladas.</option>
+                                    </select>
+                                    <div class="invalid-tooltip">
+                                        ¡Debes ingresar la informacion de la competencia!
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-
-                    <div class="col-12 position-relative">
-                        <div class="row">
-                            <label for="COMPETENCIA" class="col-sm-3 col-form-label text-start">Info de Competencia:
-                            </label>
-                            <div class="col-sm-6">
-                                <select class="form-select" id="COMPETENCIA" required>
-                                    <option selected disabled value="">Seleccione</option>
-                                    <option value="1">Las competencias se encuentran armada por Exterior y ofrecen
-                                        servicios de internet y cable.</option>
-                                    <option value="2">Las competencias se encuentran armada por Montante y ofrecen
-                                        servicios de internet y cable.</option>
-                                    <option value="3">Las competencias se encuentran armada por Exterior y Montante y
-                                        ofrecen servicios de internet y cable.</option>
-                                    <option value="4">El Edificio no posee otras empresas instaladas.</option>
-                                </select>
-                                <div class="invalid-tooltip">
-                                    ¡Debes ingresar la informacion de la competencia!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    </section>
 
 
                     <div class="col-12 position-relative">
@@ -471,6 +478,7 @@
                 </div>
             </div>
         </div>
+
 
 
 

@@ -1,4 +1,3 @@
-
 function doGet() {
   var html = HtmlService.createTemplateFromFile('Index.html').evaluate()
     .setTitle("Generador de informes")
@@ -61,14 +60,28 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, url2, tituloarma
   let locCant = 0;
   let titulo;
   let solucionPorpuesta = "";
+  let nombreInfo;
+  let docActual;
+  let docNuevo;
+  let idDocNuevo;
+  let doc;
+
 
   //------------ crea una copia de informe test y reemplaza los campos ------------------
 
-  let nombreInfo = `${nodo} - ${direccion} - DISEÑO 1`;
-  let docActual = DriveApp.getFileById("1GxtZQJd-WdtK3jUPpUgXb4gBkfQsJn4hBwtO-g6ypA0");
-  let docNuevo = docActual.makeCopy(nombreInfo);
-  let idDocNuevo = docNuevo.getId();
-  let doc = DocumentApp.openById(idDocNuevo);
+  if (tituloarmado != "5") {
+    nombreInfo = `${nodo} - ${direccion} - DISEÑO 1`;
+    docActual = DriveApp.getFileById("1GxtZQJd-WdtK3jUPpUgXb4gBkfQsJn4hBwtO-g6ypA0");
+    docNuevo = docActual.makeCopy(nombreInfo);
+    idDocNuevo = docNuevo.getId();
+    doc = DocumentApp.openById(idDocNuevo);
+  } else {
+    nombreInfo = `${nodo} - ${direccion} - DISEÑO 1`;
+    docActual = DriveApp.getFileById("1KTDIG5T2Z1nVv-ew1YVLcpRNxR5B3QgJggwQDI73-6Q");
+    docNuevo = docActual.makeCopy(nombreInfo);
+    idDocNuevo = docNuevo.getId();
+    doc = DocumentApp.openById(idDocNuevo);
+  }
 
   if (local > 0) {
     loc = "SI";
@@ -97,9 +110,11 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, url2, tituloarma
       titulo = "INFORME DE PREFACTIBILIDAD PARA RECONVERSIÓN DE EDIFICIO";
       doc.getBody().replaceText("<<OBJ>>", "Dar a conocer las alternativas para realizar el cambio de equipos de tecnologia coaxial a los nuevos equipos de fibra optica.");
       break;
+    case "5":
+      titulo = "INFORME DE INCUMPLIMIENTO DE EDIFICIO";
+      break;
     default: break;
   }
-
 
 
 
@@ -187,36 +202,64 @@ function Escribir(id, nodo, direccion, zona, pisos, dptos, url, url2, tituloarma
 
   doc.getBody().replaceText("<<PROPUESTA>>", ObsPropuesta);
 
+  if (tituloarmado != "5") {
+
+    if ((ObsGeneral != "") && (url == "0") && (url2 == "0")) {
+
+      //doc.getBody().insertParagraph(35,"").appendPageBreak();
+      //doc.getBody().replaceText("<<OBSGENERAL>>", "Observación General");
+      doc.getBody().insertParagraph(36, ObsGeneral);
+    }
 
 
+    if (url != "0") {
 
-  if ((ObsGeneral != "") && (url == "0") && (url2 == "0")) {
+      let imagenn = DriveApp.getFileById(url);
+      doc.getBody().insertParagraph(32, "").appendPageBreak();
 
-    //doc.getBody().insertParagraph(35,"").appendPageBreak();
-    //doc.getBody().replaceText("<<OBSGENERAL>>", "Observación General");
-    doc.getBody().insertParagraph(36, ObsGeneral);
-  }
+      doc.getBody().insertParagraph(35, ObsGeneral);
+
+      doc.getBody().insertImage(37, imagenn.getBlob()).setHeight(300).setWidth(300);
+      doc.getBody().insertParagraph(38, Pie1);
+
+    }
+
+    if (url2 != "0") {
+
+      let imagenn2 = DriveApp.getFileById(url2);
+      //doc.getBody().insertParagraph(32, "").appendPageBreak();
+
+      doc.getBody().insertImage(39, imagenn2.getBlob()).setHeight(300).setWidth(300);
+      doc.getBody().insertParagraph(40, Pie2);
+
+    }
+  } else {
+    if ((ObsGeneral != "") && (url == "0") && (url2 == "0")) {
+      doc.getBody().insertParagraph(20, ObsGeneral);
+    }
 
 
-  if (url != "0") {
+    if (url != "0") {
 
-    let imagenn = DriveApp.getFileById(url);
-    doc.getBody().insertParagraph(32, "").appendPageBreak();
+      let imagenn = DriveApp.getFileById(url);
+      //doc.getBody().insertParagraph(18, "").appendPageBreak();
 
-    doc.getBody().insertParagraph(35, ObsGeneral);
+      doc.getBody().insertParagraph(20, ObsGeneral);
 
-    doc.getBody().insertImage(37, imagenn.getBlob()).setHeight(300).setWidth(300);
-    doc.getBody().insertParagraph(38, Pie1);
+      doc.getBody().insertImage(22, imagenn.getBlob()).setHeight(700).setWidth(600);
+      doc.getBody().insertParagraph(23, Pie1);
 
-  }
+    }
 
-  if (url2 != "0") {
+    if (url2 != "0") {
 
-    let imagenn2 = DriveApp.getFileById(url2);
-    //doc.getBody().insertParagraph(32, "").appendPageBreak();
+      let imagenn2 = DriveApp.getFileById(url2);
+      doc.getBody().insertParagraph(24, "").appendPageBreak();
 
-    doc.getBody().insertImage(39, imagenn2.getBlob()).setHeight(300).setWidth(300);
-    doc.getBody().insertParagraph(40, Pie2);
+      doc.getBody().insertImage(25, imagenn2.getBlob()).setHeight(700).setWidth(600);
+      doc.getBody().insertParagraph(26, Pie2);
+
+    }
 
   }
 
