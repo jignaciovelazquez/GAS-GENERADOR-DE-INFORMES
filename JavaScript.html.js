@@ -18,6 +18,13 @@
   })
 })()
 
+
+//Star
+window.addEventListener("DOMContentLoaded", () => {
+  const toast = new bootstrap.Toast(document.getElementById("liveToast"));
+  toast.show();
+})
+
 //Variables
 
 var IDPARAMONTAR = "0";
